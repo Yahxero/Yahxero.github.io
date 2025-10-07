@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Date Invite 💕</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #ffeaf5, #e8f2ff);
+    font-family: "Comic Sans MS", "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #container {
+    background: #ffffffd9;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    position: relative;
+    border: 3px solid #ffc4e3;
+  }
+  h2 { margin-bottom: 10px; color: #444; }
+  p { color: #555; }
+  input, select, button {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 80%;
+    font-size: 15px;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    margin: 5px;
+    color: white;
+    transition: 0.3s;
+  }
+  .next { background-color: #8fb8f9; }
+  .cancel { background-color: #ff7b9c; }
+  .next:hover { background-color: #6c9bf0; }
+  .cancel:hover { background-color: #e46883; }
+  .gif {
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+  .floating-animal {
+    position: absolute;
+    bottom: -150px;
+    animation: float 8s infinite linear;
+    width: 150px;
+    opacity: 0.9;
+  }
+  .floating-animal:nth-child(1) { left: 5%; animation-delay: 0s; }
+  .floating-animal:nth-child(2) { left: 30%; animation-delay: 2s; }
+  .floating-animal:nth-child(3) { left: 60%; animation-delay: 4s; }
+  .floating-animal:nth-child(4) { left: 85%; animation-delay: 6s; }
+  @keyframes float {
+    0% { bottom: -150px; transform: rotate(0deg); }
+    50% { bottom: 350px; transform: rotate(10deg); }
+    100% { bottom: -150px; transform: rotate(0deg); }
+  }
+  .success { color: #4caf50; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- floating animals -->
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="floating-animal">
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="floating-animal">
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="floating-animal">
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="floating-animal">
+
+<div id="container">
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+  <h2>HEYYY Who are you?</h2>
+  <p>hint: she has the most cute and beautiful smile</p>
+  <input type="text" id="name" placeholder="Enter your name">
+  <br>
+  <button class="next" onclick="nextStep1()">Enter</button>
+</div>
+
+<script>
+let userName="", dateType="", place="", time="";
+
+function nextStep1() {
+  userName = document.getElementById('name').value.trim();
+  if(userName === "") return alert("Please enter your name!");
+
+  // Allowed names, lowercase-insensitive
+  const allowedNames = ["cuanzon", "de guzman", "princess", "jeanel"];
+  if(!allowedNames.includes(userName.toLowerCase())) {
+    alert("HMMMMM YOU'RE NOT HER!! 'try again!😠");
+    return;
+  }
+
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2>OMGGG HAIIIII It's YOU, ${userName}! 😜😜</h2>
+    <p>Would you like to go on a date with me?</p>
+    <button class="next" onclick="startDate()">YESSZZ</button>
+    <button class="cancel" onclick="yearnerMode()">NOOOO</button>
+  `;
+}
+
+function startDate() {
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2>BWHEHEHE YAY! 💕</h2>
+    <p>What type of date do you prefer?</p>
+    <select id="dateType">
+      <option value="">Choose a type</option>
+      <option>MOVIE DATE</option>
+      <option>MALL DATE</option>
+      <option>COFFEE DATE</option>
+      <option>FAST FOOD</option>
+      <option>CHILL AT HOME</option>
+    </select><br>
+    <button class="next" onclick="nextStep2()">Next</button>
+    <button class="cancel" onclick="reload()">Cancel</button>
+  `;
+}
+
+function nextStep2() {
+  dateType=document.getElementById('dateType').value;
+  if(!dateType) return alert("Please choose a date type!");
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2>OHHHH LOVETTTT!!</h2>
+    <p>Where would you like to hang out hm?</p>
+    <input type="text" id="place" placeholder="Enter a place"><br>
+    <button class="next" onclick="nextStep3()">Next</button>
+    <button class="cancel" onclick="reload()">Cancel</button>
+  `;
+}
+
+function nextStep3() {
+  place=document.getElementById('place').value;
+  if(place.trim()==="") return alert("Please enter a place!");
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2>WHAT TIME;>></h2>
+    <p>What time should we meet at ${place}?:)</p>
+    <select id="time">
+      <option value="">Select a time</option>
+      <option>Morning</option>
+      <option>Afternoon</option>
+      <option>Evening</option>
+      <option>NOW??? 😍</option>
+    </select><br>
+    <button class="next" onclick="nextStep4()">Finish</button>
+    <button class="cancel" onclick="reload()">Cancel</button>
+  `;
+}
+
+function nextStep4() {
+  time=document.getElementById('time').value;
+  if(!time) return alert("Please select a time!");
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2 class="success">YAAAY I WILL BE ABLE TO SEE YOU! It's a Date!</h2>
+    <p>Can’t wait to see you at <b>${place}</b> during the <b>${time}</b>! 💕</p>
+    <p>ROARRRRRRR! 🦖</p>
+    <button class="next" onclick="reload()">CYAHHH 😝</button>
+  `;
+}
+
+function yearnerMode() {
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2> LUH!!!!</h2>
+    <p>PWEASEEEEEE ME BEGGING💔</p>
+    <button class="next" onclick="startDate()">FINEEE😍😍😍</button>
+    <button class="cancel" onclick="keepBegging()">NO 💔</button>
+  `;
+}
+
+function keepBegging() {
+  document.getElementById('container').innerHTML = `
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="gif">
+    <h2>PLEASEEEE PLEASEEE ME BEGGING</h2>
+    <p>TURNING YEARNING MODE ON</p>
+    <button class="next" onclick="startDate()">FINENFINEFINE</button>
+    <button class="cancel" onclick="yearnerMode()">I WILL KEEP BEGGING</button>
+  `;
+}
+
+function reload() { location.reload(); }
+</script>
+</body>
+</html>
