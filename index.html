@@ -25,6 +25,14 @@
       overflow: hidden;
     }
 
+    /* Make scroll possible when letter is shown */
+    body.show-letter {
+      overflow-y: auto;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 0;
+    }
+
     .container {
       width: 95%;
       max-width: 480px;
@@ -33,7 +41,7 @@
       padding: 24px;
       box-shadow: 0 10px 30px var(--shadow);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       display: none;
       flex-direction: column;
       align-items: center;
@@ -62,13 +70,19 @@
       border: 4px solid #ffe2e8;
       object-fit: cover;
       display: block;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .photo:hover {
+      transform: scale(1.03);
     }
 
     .letter {
       font-size: 0.95rem;
       line-height: 1.7;
-      max-height: 60vh;
-      overflow-y: auto;
+      max-height: none;
+      overflow-y: visible;
       text-align: left;
       padding-right: 10px;
       opacity: 0;
@@ -114,6 +128,9 @@
       transform-style: preserve-3d;
       perspective: 1000px;
       transition: all 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .envelope {
@@ -178,6 +195,25 @@
       font-size: 0.9rem;
     }
 
+    /* Bouquet beside envelope */
+    .bouquet {
+      width: 80px;
+      height: 80px;
+      background-image: url('bouquet.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      right: -90px;
+      bottom: -10px;
+      transform: rotate(10deg);
+      animation: float 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(10deg); }
+      100% { transform: translateY(-6px) rotate(12deg); }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
@@ -195,37 +231,34 @@
       <div class="envelope" id="envelope">
         <div class="message">Tap to Open 💌</div>
       </div>
+      <div class="bouquet"></div> <!-- 🌸 Added bouquet -->
     </div>
     <p class="tap-note">open the envelope to read the letter</p>
   </div>
 
   <!-- Letter Section -->
   <div class="container" id="letterContainer">
+    <!-- You can now add multiple photos -->
     <img src="your-photo.jpg" alt="Our Photo" class="photo" />
+    <img src="capybara.jpg" alt="Capybara" class="photo" data-sound="capybara.mp3" />
+    <!-- You can add more like:
+    <img src="another.jpg" alt="Cute Pic" class="photo" data-sound="sound.mp3" /> -->
+
     <h1>one month — for you, bebi</h1>
     <p class="subtitle">a quiet journey of thirty-one days and countless feelings</p>
 
+    <!-- 💌 The letter (unchanged) -->
     <div class="letter" id="letter">
       <p>one month — just thirty-one days, but somehow it already feels like a quiet journey i never want to end. every day since i started courting you, bebi, has meant something more than i can explain. from our small talks to those bursts of laughter, even the silence between us feels like peace. everything with you feels natural — soft, real, and light. maybe because it’s you.</p>
-
       <p>i never imagined that someone could make me look forward to every sunrise the way you do. every time i talk to you, it’s like the world slows down — as if everything around me fades just to make space for your voice. your words calm me, your smile brings warmth, and your thoughts make me see things in a new way. i catch myself smiling for no reason, replaying your words in my head, remembering how it feels when you make me laugh.</p>
-
       <p>you’ve taught me what patience truly is — not the kind that waits because it has to, but the kind that waits because it wants to. because you’re worth it. i’m learning to move slow, to build something honest, something that doesn’t crumble when tested. i don’t want to rush your heart, bebi. i just want you to feel that i’m here — steady, real, and never going anywhere.</p>
-
       <p>and i want to say this, too — just because you’ve shown me that i have a chance doesn’t mean i’ll stop trying. it doesn’t mean i’ll take it for granted or lose the effort i’ve started with. the more i see you opening up, the more i’ll prove that i deserve the trust you give me. i won’t ever let the effort fade. i don’t want to be the kind of man who stops showing how much someone means to him just because he feels secure. love, for me, isn’t about reaching a finish line — it’s about showing up every single day, no matter what.</p>
-
       <p>i know people say that “there’s always another girl” out there — but i don’t want another. i want you. because it’s rare to meet someone who makes you feel calm just by being there, someone who makes the world feel softer just by existing. you’re the kind of person that makes all the noise quiet down. i don’t care about what others say; i care about how you make me feel — genuine, grounded, and alive.</p>
-
       <p>and i know i have a past — i’ve made mistakes, i’ve done things i’m not proud of. yes, i have a history of cheating, and that’s something i can never erase. but what i can do is make sure it never happens again. i learned the hardest way that hurting someone’s trust doesn’t just break them — it breaks you too. i won’t ever let that version of me come back. because you, bebi, deserve the kind of love that is pure, loyal, and unwavering. and i promise that’s what i’ll give — not words, but proof, through time and consistency.</p>
-
       <p>you’re beautiful, bebi — not the kind of beauty that needs filters, not the kind that hides behind makeup. you’re beautiful just by being yourself — your bare face, your natural smile, the softness in your eyes. it’s a kind of beauty that doesn’t fade even when everything else does. you’re the kind of pretty that feels real — the kind that makes people stop and feel something without even knowing why.</p>
-
       <p>i know i’m still just your suitor, but what i feel for you isn’t simple or shallow. it’s something that grows quietly but deeply, something that’s built on sincerity and hope. i’m not here to impress you with grand gestures — i’m here to stay, to show up with honesty, to give the kind of love that’s gentle but strong. because when something’s true, it doesn’t need to be rushed. it just needs to be kept.</p>
-
       <p>this one month may seem short, but for me, it already carries memories i’ll hold onto — your laughter, your words, the way you listen, the comfort you bring without even trying. and as time passes, i’ll keep choosing you — in every version of me, through every season we face, with patience and care.</p>
-
       <p>so here’s to our first month, bebi — a month of learning, of waiting, of quiet growth and understanding. thank you for letting me stay, for letting me care, for giving me the chance to be better than who i was before. i don’t know what the future holds, but one thing i’m sure of — as long as you’ll let me, i’ll keep proving that my intentions are real, my heart is faithful, and my love will always remain.</p>
-
       <p>because i don’t want to lose you, bebi. not to mistakes, not to pride, not to fear. you’re too precious to ever risk. and i promise — this time, i’m all in, for real.</p>
     </div>
 
@@ -249,6 +282,7 @@
       setTimeout(() => {
         envelopeSection.style.display = 'none';
         letterContainer.style.display = 'flex';
+        document.body.classList.add('show-letter');
         setTimeout(()=>letter.classList.add('show'), 600);
         audio.play().catch(()=>{});
       }, 1500);
@@ -256,6 +290,17 @@
 
     toggleMusic.addEventListener('click', () => {
       if (audio.paused) audio.play(); else audio.pause();
+    });
+
+    // 🐹 Photo click sound effect
+    document.querySelectorAll('.photo').forEach(img => {
+      img.addEventListener('click', () => {
+        const soundFile = img.getAttribute('data-sound');
+        if (soundFile) {
+          const sound = new Audio(soundFile);
+          sound.play();
+        }
+      });
     });
   </script>
 </body>
