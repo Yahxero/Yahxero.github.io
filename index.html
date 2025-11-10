@@ -2,180 +2,261 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Can I court you?</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>One Month — For You, Bebi</title>
   <style>
-    body {
-      font-family: "Poppins", system-ui, sans-serif;
-      background: linear-gradient(180deg, #f9a8d4, #fbcfe8);
+    :root {
+      --bg: #ffe6eb;
+      --accent: #ffb6c1;
+      --text: #5a4b4b;
+      --soft: #fff0f3;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(180deg, #ffeef2, #ffdce5);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
       display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 480px;
+      background: var(--soft);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: none;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      margin: 0;
-      color: #4a044e;
       text-align: center;
-      overflow: hidden;
-      padding: 30px 15px;
-      position: relative;
+      animation: fadeIn 1s ease forwards;
     }
 
     h1 {
-      font-size: 1.9rem;
-      margin: 10px 0 25px 0;
-      transition: all 0.3s ease;
-      z-index: 5;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
-    .gif-container {
-      position: relative;
-      height: 230px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 50px; /* lowered the cat GIF */
-      z-index: 5;
-      transition: all 0.3s ease;
+    p.subtitle {
+      font-size: 0.9rem;
+      color: #a8848a;
+      margin-bottom: 16px;
     }
 
-    .gif-container img {
-      width: 230px;
-      height: auto;
-      border-radius: 14px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.6s ease;
+    .photo {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      margin-bottom: 18px;
+      border: 4px solid #ffe2e8;
+      object-fit: cover;
+      display: block;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      margin-top: 10px;
-      z-index: 10;
-      flex-wrap: wrap;
+    .letter {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-height: 60vh;
+      overflow-y: auto;
+      text-align: left;
+      padding-right: 10px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 1s ease;
+    }
+
+    .letter.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     button {
-      border: none;
-      outline: none;
-      font-size: 1.2rem;
-      padding: 14px 24px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      background: var(--accent);
       color: white;
-      user-select: none;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #b38b8b;
+      margin-top: 16px;
+    }
+
+    /* Envelope animation */
+    .envelope-wrapper {
       position: relative;
+      width: 260px;
+      height: 180px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: all 0.8s ease;
     }
 
-    #yesBtn {
-      background: linear-gradient(90deg, #10b981, #059669);
-      transform: scale(1);
-      max-width: 90vw;
-      word-wrap: break-word;
-      z-index: 20;
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      overflow: hidden;
     }
 
-    #noBtn {
-      background: linear-gradient(90deg, #ef4444, #b91c1c);
-      z-index: 5;
+    .envelope::before, .envelope::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--accent);
+      transition: transform 0.6s ease;
+    }
+
+    .envelope::before {
+      top: 0;
+      transform-origin: top;
+      border-bottom: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .envelope::after {
+      bottom: 0;
+      transform-origin: bottom;
+    }
+
+    .envelope.open::before {
+      transform: rotateX(-180deg);
     }
 
     .message {
-      font-size: 1.2rem;
-      margin-top: 60px; /* moved message lower */
-      font-weight: 500;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: 5;
-      position: relative;
+      position: absolute;
+      inset: 0;
+      background: white;
+      border-radius: 6px;
+      margin: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      transition: transform 1s ease;
+      transform: translateY(100%);
     }
 
-    .heart {
-      position: fixed;
-      bottom: 60px;
-      font-size: 24px;
-      animation: floatUp 2s ease forwards;
-      pointer-events: none;
+    .envelope.open .message {
+      transform: translateY(0);
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-250px) scale(1.8); opacity: 0; }
+    .tap-note {
+      margin-top: 18px;
+      color: #a8848a;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
     }
   </style>
 </head>
 <body>
-
-  <h1 id="question">Can I court you?</h1>
-
-  <div class="gif-container">
-    <img id="reactionGif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Reaction GIF">
+  <!-- Envelope Section -->
+  <div id="envelopeSection" class="fade-in">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope" id="envelope">
+        <div class="message">Tap to Open 💌</div>
+      </div>
+    </div>
+    <p class="tap-note">open the envelope to read the letter</p>
   </div>
 
-  <div class="buttons">
-    <button id="yesBtn">Yes</button>
-    <button id="noBtn">No</button>
-  </div>
+  <!-- Letter Section -->
+  <div class="container" id="letterContainer">
+    <img src="your-photo.jpg" alt="Our Photo" class="photo" />
+    <h1>one month — for you, bebi</h1>
+    <p class="subtitle">a quiet journey of thirty-one days and countless feelings</p>
 
-  <div class="message" id="message"></div>
+    <div class="letter" id="letter">
+      <p>one month — just thirty-one days, but somehow it already feels like a quiet journey i never want to end. every day since i started courting you, bebi, has meant something more than i can explain. from our small talks to those bursts of laughter, even the silence between us feels like peace. everything with you feels natural — soft, real, and light. maybe because it’s you.</p>
+
+      <p>i never imagined that someone could make me look forward to every sunrise the way you do. every time i talk to you, it’s like the world slows down — as if everything around me fades just to make space for your voice. your words calm me, your smile brings warmth, and your thoughts make me see things in a new way. i catch myself smiling for no reason, replaying your words in my head, remembering how it feels when you make me laugh.</p>
+
+      <p>you’ve taught me what patience truly is — not the kind that waits because it has to, but the kind that waits because it wants to. because you’re worth it. i’m learning to move slow, to build something honest, something that doesn’t crumble when tested. i don’t want to rush your heart, bebi. i just want you to feel that i’m here — steady, real, and never going anywhere.</p>
+
+      <p>and i want to say this, too — just because you’ve shown me that i have a chance doesn’t mean i’ll stop trying. it doesn’t mean i’ll take it for granted or lose the effort i’ve started with. the more i see you opening up, the more i’ll prove that i deserve the trust you give me. i won’t ever let the effort fade. i don’t want to be the kind of man who stops showing how much someone means to him just because he feels secure. love, for me, isn’t about reaching a finish line — it’s about showing up every single day, no matter what.</p>
+
+      <p>i know people say that “there’s always another girl” out there — but i don’t want another. i want you. because it’s rare to meet someone who makes you feel calm just by being there, someone who makes the world feel softer just by existing. you’re the kind of person that makes all the noise quiet down. i don’t care about what others say; i care about how you make me feel — genuine, grounded, and alive.</p>
+
+      <p>and i know i have a past — i’ve made mistakes, i’ve done things i’m not proud of. yes, i have a history of cheating, and that’s something i can never erase. but what i can do is make sure it never happens again. i learned the hardest way that hurting someone’s trust doesn’t just break them — it breaks you too. i won’t ever let that version of me come back. because you, bebi, deserve the kind of love that is pure, loyal, and unwavering. and i promise that’s what i’ll give — not words, but proof, through time and consistency.</p>
+
+      <p>you’re beautiful, bebi — not the kind of beauty that needs filters, not the kind that hides behind makeup. you’re beautiful just by being yourself — your bare face, your natural smile, the softness in your eyes. it’s a kind of beauty that doesn’t fade even when everything else does. you’re the kind of pretty that feels real — the kind that makes people stop and feel something without even knowing why.</p>
+
+      <p>i know i’m still just your suitor, but what i feel for you isn’t simple or shallow. it’s something that grows quietly but deeply, something that’s built on sincerity and hope. i’m not here to impress you with grand gestures — i’m here to stay, to show up with honesty, to give the kind of love that’s gentle but strong. because when something’s true, it doesn’t need to be rushed. it just needs to be kept.</p>
+
+      <p>this one month may seem short, but for me, it already carries memories i’ll hold onto — your laughter, your words, the way you listen, the comfort you bring without even trying. and as time passes, i’ll keep choosing you — in every version of me, through every season we face, with patience and care.</p>
+
+      <p>so here’s to our first month, bebi — a month of learning, of waiting, of quiet growth and understanding. thank you for letting me stay, for letting me care, for giving me the chance to be better than who i was before. i don’t know what the future holds, but one thing i’m sure of — as long as you’ll let me, i’ll keep proving that my intentions are real, my heart is faithful, and my love will always remain.</p>
+
+      <p>because i don’t want to lose you, bebi. not to mistakes, not to pride, not to fear. you’re too precious to ever risk. and i promise — this time, i’m all in, for real.</p>
+    </div>
+
+    <button id="toggleMusic">Toggle Music</button>
+    <footer>Made with love — put <strong>your-photo.jpg</strong> and <strong>bg-music.mp3</strong> in the same folder 💗</footer>
+
+    <audio id="bgAudio" src="bg-music.mp3" loop preload="auto"></audio>
+  </div>
 
   <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const gif = document.getElementById('reactionGif');
-    const question = document.getElementById('question');
-    const message = document.getElementById('message');
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const envelope = document.getElementById('envelope');
+    const letterContainer = document.getElementById('letterContainer');
+    const letter = document.getElementById('letter');
+    const toggleMusic = document.getElementById('toggleMusic');
+    const audio = document.getElementById('bgAudio');
+    const envelopeSection = document.getElementById('envelopeSection');
 
-    const noTexts = [
-      "Are you sure?",
-      "Are you really sure?",
-      "Are you positive?",
-      "Think again 😢",
-      "Last chance!"
-    ];
-    let noCount = 0;
-    let yesSize = 1;
-
-    const sadGif = "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif";
-    const happyCat = "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif";
-
-    noBtn.addEventListener('click', () => {
-      question.textContent = noTexts[noCount] || "You can't resist forever 😜";
-      noCount++;
-      yesSize += 0.3;
-      yesBtn.style.transform = `scale(${yesSize})`;
+    envelopeWrapper.addEventListener('click', () => {
+      envelope.classList.add('open');
+      setTimeout(() => {
+        envelopeSection.style.display = 'none';
+        letterContainer.style.display = 'flex';
+        setTimeout(()=>letter.classList.add('show'), 600);
+        audio.play().catch(()=>{});
+      }, 1500);
     });
 
-    yesBtn.addEventListener('click', () => {
-      gif.style.opacity = 0;
-      setTimeout(() => {
-        gif.src = happyCat;
-        gif.style.opacity = 1;
-      }, 400);
-
-      question.textContent = "Yay! You said yes! 💖";
-      message.textContent = "You just made this cat (and me) super happy 🐱💞";
-      message.style.opacity = 1;
-
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.textContent = "💖";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.fontSize = Math.random() * 20 + 16 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 2000);
-      }
-
-      // Redirect to page1.html after 3 seconds
-      setTimeout(() => {
-        window.location.href = "page1.html";
-      }, 3000);
+    toggleMusic.addEventListener('click', () => {
+      if (audio.paused) audio.play(); else audio.pause();
     });
   </script>
-
 </body>
 </html>
