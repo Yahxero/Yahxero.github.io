@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biyong’s Burger Station</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #111;
+    }
+
+    header .logo img {
+      width: 100px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff6600;
+    }
+
+    .phone {
+      font-size: 14px;
+      font-weight: bold;
+      color: #ff6600;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 40px;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h2 {
+      font-size: 60px;
+      margin: 10px 0;
+      text-transform: uppercase;
+      color: #ff6600;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #bbb;
+    }
+
+    .hero img {
+      max-width: 40%;
+      border-radius: 10px;
+    }
+
+    /* Menu */
+    .menu {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .menu h2 {
+      color: #ff6600;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .menu img {
+      max-width: 90%;
+      border-radius: 12px;
+      box-shadow: 0px 5px 25px rgba(0,0,0,0.6);
+    }
+
+    /* Shop */
+    .shop {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .shop h2 {
+      color: #ff6600;
+      font-size: 28px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .category {
+      margin-bottom: 50px;
+    }
+
+    .category h3 {
+      font-size: 24px;
+      color: #ff6600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .shop-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .item {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.6);
+      transition: transform 0.3s;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .item h4 {
+      margin: 10px 0;
+      color: #ff6600;
+      font-size: 20px;
+    }
+
+    .item p {
+      font-size: 14px;
+      color: #bbb;
+      margin: 5px 0 15px;
+    }
+
+    .item button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #ff6600;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .item button:hover {
+      background: #e65c00;
+    }
+
+    /* ⭐ Promo Section (Angel's Pizza Style) */
+    .promo-section {
+      background: #000;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .promo-section h2 {
+      color: #ff6600;
+      font-size: 32px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .promo-container {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      gap: 35px;
+    }
+
+    .promo-card {
+      background: #fff;
+      color: #000;
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .promo-circle {
+      width: 140px;
+      height: 140px;
+      background: #ffe066;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .promo-circle img {
+      width: 120px;
+      height: auto;
+    }
+
+    .promo-card h3 {
+      font-size: 20px;
+      color: #ff6600;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .promo-card p {
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Blog */
+    .blog {
+      background: #111;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .blog h2 {
+      color: #ff6600;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .blog p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 16px;
+      color: #bbb;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Biyong's Burger Station Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="phone">+63 0999 962 0096</div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <p>Welcome to</p>
+      <h2>Biyong’s Burger Station</h2>
+      <p>Looking for a good and tasty burger? Explore our menu,
+        shop online, and enjoy the best burger experience.</p>
+    </div>
+    <img src="yong burger.png" alt="Fine Dining Dish">
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="menu">
+    <h2>Our Menu</h2>
+    <img src="menu.png" width="1000" alt="Biyong's Burger Station Menu">
+  </section>
+
+  <!-- Shop -->
+  <section id="shop" class="shop">
+    <h2>Shop</h2>
+
+    <div class="category">
+      <h3>Burgers</h3>
+      <div class="shop-items">
+        <div class="item">
+          <img src="allinbun.png" alt="Classic Burger">
+          <h4>All In Bun</h4>
+          <p>₱130</p>
+          <button>Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="cheeseburger.png" alt="Cheese Overload">
+          <h4>CheeseBurger</h4>
+          <p>₱100</p>
+          <button>Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="veggie.png" alt="Spicy Burger">
+          <h4>Veggie</h4>
+          <p>₱105</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Fries</h3>
+      <div class="shop-items">
+        <div class="item">
+          <h4>Regular Fries</h4>
+          <p>₱70</p>
+          <button>Add to Cart</button>
+        </div>
+        <div class="item">
+          <h4>Nuggets</h4>
+          <p>₱70</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Drinks</h3>
+      <div class="shop-items">
+        <div class="item">
+          <h4>Soda</h4>
+          <p>₱20 - Bottled Water, Coke, Royal, Sprite.</p>
+          <button>Add to Cart</button>
+        </div>
+        <div class="item">
+          <h4>MilkTea</h4>
+          <p>₱65 - Sweet and refreshing.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ PROMO SECTION (ANGEL'S STYLE) -->
+  <section id="promo" class="promo-section">
+    <h2>Special Promos</h2>
+
+    <div class="promo-container">
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="allinbun.png" alt="Promo Burger">
+        </div>
+        <h3>Buy 1 Burger, Get 1 Promo</h3>
+        <p>Double the flavor with every order!</p>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="fries.png" alt="Free Fries">
+        </div>
+        <h3>Free Fries + Medium Milktea</h3>
+        <p>Enjoy crispy fries and a refreshing drink.</p>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="milktea.png" alt="Milktea">
+        </div>
+        <h3>50% Off Discount</h3>
+        <p>Save more, enjoy more!</p>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="milktea.png" alt="Large Milktea">
+        </div>
+        <h3>Free Large Milktea</h3>
+        <p>Refreshing sweetness on us!</p>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="fries.png" alt="Burger and Fries">
+        </div>
+        <h3>Buy 1 Burger, Get 1 Fries</h3>
+        <p>Your burger comes with a free side!</p>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-circle">
+          <img src="allinbun.png" alt="Burger Promo Bundle">
+        </div>
+        <h3>Buy 2 Burgers, Get 2 Promo</h3>
+        <p>A massive deal for burger lovers!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="blog">
+    <h2>Our Blog</h2>
+    <p>Welcome to our food blog! Here we share stories about our kitchen, 
+      new recipes, food adventures, and behind-the-scenes moments at Biyong’s Burger Station.
+      Stay tuned for updates on our latest burgers, special offers, and events!</p>
+  </section>
+
+</body>
+</html>
