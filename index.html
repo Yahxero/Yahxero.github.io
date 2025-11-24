@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta-name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biyong’s Burger Station</title>
+
+  <!-- ICONS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
@@ -19,6 +24,8 @@
       align-items: center;
       padding: 15px 40px;
       background: #111;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     header .logo img {
@@ -31,6 +38,7 @@
       gap: 25px;
       margin: 0;
       padding: 0;
+      flex-wrap: wrap;
     }
 
     nav ul li a {
@@ -46,9 +54,28 @@
       color: #ff6600;
     }
 
-    .phone {
-      font-size: 14px;
+    /* Establishment Name */
+    .est-name {
+      font-size: 16px;
       font-weight: bold;
+      color: #ff6600;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      font-size: 22px;
+    }
+
+    .social-icons a {
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
       color: #ff6600;
     }
 
@@ -58,10 +85,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 60px 40px;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
     .hero-text {
-      max-width: 50%;
+      max-width: 500px;
+      flex: 1;
+      min-width: 280px;
     }
 
     .hero-text h2 {
@@ -78,8 +109,22 @@
     }
 
     .hero img {
-      max-width: 40%;
+      max-width: 400px;
+      width: 100%;
       border-radius: 10px;
+      flex: 1;
+    }
+
+    /* Responsive Hero Fix */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero img {
+        max-width: 70%;
+      }
     }
 
     /* Menu */
@@ -178,6 +223,7 @@
       background: #e65c00;
     }
 
+    /* Promo */
     .promo-section {
       background: #000;
       padding: 60px 20px;
@@ -199,8 +245,8 @@
     }
 
     .promo-card {
-      background: #333; /* changed to gray */
-      color: #fff;      /* white text */
+      background: #333;
+      color: #fff;
       border-radius: 20px;
       padding: 30px 25px;
       text-align: center;
@@ -233,7 +279,7 @@
 
     .promo-card p {
       font-size: 14px;
-      color: #ddd; /* lighter gray for readability */
+      color: #ddd;
     }
 
     /* Blog */
@@ -257,6 +303,76 @@
       color: #bbb;
       line-height: 1.6;
     }
+
+    /* Footer */
+    .footer {
+      background: #111;
+      padding: 40px 20px;
+      text-align: center;
+      color: #bbb;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: #ff6600;
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .footer-section p {
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      font-size: 24px;
+      margin-top: 5px;
+    }
+
+    .footer-icons a {
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: #ff6600;
+    }
+
+    .inquiries {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ffcc88;
+      line-height: 1.5;
+    }
+
+    .inquiries a {
+      color: #ff6600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .inquiries a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #666;
+    }
   </style>
 </head>
 <body>
@@ -277,7 +393,14 @@
       </ul>
     </nav>
 
-    <div class="phone">+63 0999 962 0096</div>
+    <!-- Establishment Name -->
+    <div class="est-name">Biyong’s Burger Station</div>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/BiyongsBurgerStation" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/biyongsburgerstation?igsh=MWlmOHRlYWRieWdwbg%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
   </header>
 
   <!-- Hero -->
@@ -367,7 +490,6 @@
     <h2>Special Promos</h2>
 
     <div class="promo-container">
-
       <div class="promo-card">
         <div class="promo-circle">
           <img src="allinbun.png" alt="Promo Burger">
@@ -422,10 +544,43 @@
   <!-- Blog -->
   <section id="blog" class="blog">
     <h2>Our Blog</h2>
-    <p>Welcome to our food blog! Here we share stories about our kitchen, 
-      new recipes, food adventures, and behind-the-scenes moments at Biyong’s Burger Station.
-      Stay tuned for updates on our latest burgers, special offers, and events!</p>
+    <p>Welcome to the heartbeat of Biyong's Burger Station!We're thrilled to share with you the stories behind our kitchen, where the magic itself happens, and the passion that ignites our flames (definitely no pun intended there). Get ready to indulge in mouth-watering new recipes, sneak peeks of our food adventures, and the people who make it all possible. From juicy updates on our latest burger creations to exclusive offers and behind-the-scenes moments, we're cooking up something special just for you! So, grab a bite, pull up a chair, and join us on this delicious journey—as well as to support us on this establishment!
+<br><br>
+We'll be sharing new products straight out from our kitchen, behind-the-scenes moments with our chefs, contents in our Facebook page, updates on our latest burgers and promotions, and exclusive offers and events that'll make your taste buds sway like crazy! Stay tuned for all the burger bliss</p>
   </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-section">
+        <h3>Location</h3>
+        <p>10 J Buenviaje St, Cainta, Philippines</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>📞 +63 0999 962 0096</p>
+        <p>📧 biyongsburgerstation@gmail.com</p>
+        <p class="inquiries">
+          For more inquiries, please message
+          <a href="https://www.facebook.com/markk.moralita" target="_blank">Mark Anthony Moralita</a>
+          on Facebook.
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="footer-icons">
+          <a href="https://www.facebook.com/BiyongsBurgerStation" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/biyongsburgerstation?igsh=MWlmOHRlYWRieWdwbg%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">© 2025 Biyong’s Burger Station — All Rights Reserved.</p>
+  </footer>
 
 </body>
 </html>
